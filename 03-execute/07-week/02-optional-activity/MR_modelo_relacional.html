@@ -1,0 +1,264 @@
+
+<style>
+  .t-hdr { font-family: var(--font-sans); font-size: 12px; font-weight: 500; }
+  .t-row { font-family: var(--font-sans); font-size: 11px; fill: var(--color-text-primary); }
+  .t-pk  { font-family: var(--font-sans); font-size: 11px; font-weight: 600; text-decoration: underline; fill: var(--color-text-primary); }
+  .t-fk  { font-family: var(--font-sans); font-size: 11px; font-style: italic; fill: var(--color-text-secondary); }
+  .sec-lbl { font-family: var(--font-sans); font-size: 11px; fill: var(--color-text-tertiary); }
+  .conn { fill: none; stroke: var(--color-border-primary); stroke-width: 0.8; stroke-dasharray: 4 3; }
+</style>
+<svg width="100%" viewBox="0 0 680 1780" role="img">
+  <title>MR - Modelo Relacional</title>
+  <desc>Modelo relacional con tablas, PKs, FKs y relaciones entre dominios</desc>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text font-family="var(--font-sans)" font-size="15" font-weight="500" fill="var(--color-text-primary)" x="340" y="28" text-anchor="middle">MR — Modelo Relacional</text>
+
+  <!-- ===== DOMINIO UBICACIÓN ===== -->
+  <text class="sec-lbl" x="340" y="52" text-anchor="middle">── Dominio de ubicación ──</text>
+
+  <!-- CONTINENTE -->
+  <rect x="20" y="60" width="150" height="14" rx="0" fill="#534AB7"/>
+  <text class="t-hdr" x="95" y="71" text-anchor="middle" fill="white">CONTINENTE</text>
+  <rect x="20" y="74" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-pk"  x="30" y="84">id_continente PK</text>
+  <rect x="20" y="87" width="150" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="97">nombre</text>
+  <rect x="20" y="100" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="110">codigo</text>
+  <rect x="20" y="113" width="150" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="123">descripcion</text>
+
+  <!-- PAIS -->
+  <rect x="200" y="60" width="150" height="14" rx="0" fill="#534AB7"/>
+  <text class="t-hdr" x="275" y="71" text-anchor="middle" fill="white">PAIS</text>
+  <rect x="200" y="74" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-pk"  x="210" y="84">id_pais PK</text>
+  <rect x="200" y="87" width="150" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="97">nombre</text>
+  <rect x="200" y="100" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="110">codigo_iso</text>
+  <rect x="200" y="113" width="150" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-fk"  x="210" y="123">id_continente FK</text>
+  <rect x="200" y="126" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="136">poblacion</text>
+
+  <!-- Línea Continente → Pais -->
+  <line x1="170" y1="100" x2="200" y2="100" class="conn" marker-end="url(#arr)"/>
+
+  <!-- DEPARTAMENTO -->
+  <rect x="380" y="60" width="155" height="14" rx="0" fill="#534AB7"/>
+  <text class="t-hdr" x="457" y="71" text-anchor="middle" fill="white">DEPARTAMENTO</text>
+  <rect x="380" y="74" width="155" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-pk"  x="390" y="84">id_departamento PK</text>
+  <rect x="380" y="87" width="155" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="390" y="97">nombre</text>
+  <rect x="380" y="100" width="155" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="390" y="110">codigo</text>
+  <rect x="380" y="113" width="155" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-fk"  x="390" y="123">id_pais FK</text>
+  <rect x="380" y="126" width="155" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="390" y="136">capital</text>
+
+  <!-- Pais → Departamento -->
+  <line x1="350" y1="100" x2="380" y2="100" class="conn" marker-end="url(#arr)"/>
+
+  <!-- CIUDAD -->
+  <rect x="20" y="170" width="150" height="14" rx="0" fill="#534AB7"/>
+  <text class="t-hdr" x="95" y="181" text-anchor="middle" fill="white">CIUDAD</text>
+  <rect x="20" y="184" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-pk"  x="30" y="194">id_ciudad PK</text>
+  <rect x="20" y="197" width="150" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="207">nombre</text>
+  <rect x="20" y="210" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-fk"  x="30" y="220">id_departamento FK</text>
+  <rect x="20" y="223" width="150" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="233">codigo_postal</text>
+  <rect x="20" y="236" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="246">tipo</text>
+
+  <!-- Departamento → Ciudad -->
+  <line x1="457" y1="139" x2="457" y2="158" class="conn"/>
+  <line x1="457" y1="158" x2="95" y2="158" class="conn"/>
+  <line x1="95" y1="158" x2="95" y2="170" class="conn" marker-end="url(#arr)"/>
+
+  <!-- BARRIO -->
+  <rect x="200" y="170" width="150" height="14" rx="0" fill="#534AB7"/>
+  <text class="t-hdr" x="275" y="181" text-anchor="middle" fill="white">BARRIO</text>
+  <rect x="200" y="184" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-pk"  x="210" y="194">id_barrio PK</text>
+  <rect x="200" y="197" width="150" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="207">nombre</text>
+  <rect x="200" y="210" width="150" height="13" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-fk"  x="210" y="220">id_ciudad FK</text>
+  <rect x="200" y="223" width="150" height="13" fill="var(--color-background-primary)" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="233">estrato</text>
+
+  <!-- Ciudad → Barrio -->
+  <line x1="170" y1="210" x2="200" y2="210" class="conn" marker-end="url(#arr)"/>
+
+  <!-- ===== DOMINIO COMERCIAL ===== -->
+  <text class="sec-lbl" x="340" y="295" text-anchor="middle">── Dominio comercial ──</text>
+
+  <!-- CATEGORIA -->
+  <rect x="20" y="305" width="150" height="14" rx="0" fill="#0F6E56"/>
+  <text class="t-hdr" x="95" y="316" text-anchor="middle" fill="white">CATEGORÍA</text>
+  <rect x="20" y="319" width="150" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-pk"  x="30" y="329">id_categoria PK</text>
+  <rect x="20" y="332" width="150" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="342">nombre</text>
+  <rect x="20" y="345" width="150" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="355">descripcion</text>
+  <rect x="20" y="358" width="150" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="368">estado</text>
+
+  <!-- PRODUCTO -->
+  <rect x="200" y="305" width="160" height="14" rx="0" fill="#0F6E56"/>
+  <text class="t-hdr" x="280" y="316" text-anchor="middle" fill="white">PRODUCTO</text>
+  <rect x="200" y="319" width="160" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-pk"  x="210" y="329">id_producto PK</text>
+  <rect x="200" y="332" width="160" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="342">nombre</text>
+  <rect x="200" y="345" width="160" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="355">precio</text>
+  <rect x="200" y="358" width="160" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="368">stock</text>
+  <rect x="200" y="371" width="160" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-fk"  x="210" y="381">id_categoria FK</text>
+  <rect x="200" y="384" width="160" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="210" y="394">descripcion</text>
+
+  <!-- Categoria → Producto -->
+  <line x1="170" y1="345" x2="200" y2="345" class="conn" marker-end="url(#arr)"/>
+
+  <!-- FACTURA -->
+  <rect x="20" y="445" width="155" height="14" rx="0" fill="#0F6E56"/>
+  <text class="t-hdr" x="97" y="456" text-anchor="middle" fill="white">FACTURA</text>
+  <rect x="20" y="459" width="155" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-pk"  x="30" y="469">id_factura PK</text>
+  <rect x="20" y="472" width="155" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="482">fecha</text>
+  <rect x="20" y="485" width="155" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="495">total</text>
+  <rect x="20" y="498" width="155" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-fk"  x="30" y="508">id_usuario FK</text>
+  <rect x="20" y="511" width="155" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="521">estado</text>
+
+  <!-- DETALLE_FACTURA -->
+  <rect x="210" y="445" width="165" height="14" rx="0" fill="#0F6E56"/>
+  <text class="t-hdr" x="292" y="456" text-anchor="middle" fill="white">DETALLE_FACTURA</text>
+  <rect x="210" y="459" width="165" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-pk"  x="220" y="469">id_detalle PK</text>
+  <rect x="210" y="472" width="165" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-fk"  x="220" y="482">id_factura FK</text>
+  <rect x="210" y="485" width="165" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-fk"  x="220" y="495">id_producto FK</text>
+  <rect x="210" y="498" width="165" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="220" y="508">cantidad</text>
+  <rect x="210" y="511" width="165" height="13" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="220" y="521">precio_unitario</text>
+  <rect x="210" y="524" width="165" height="13" fill="var(--color-background-primary)" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="t-row" x="220" y="534">subtotal</text>
+
+  <!-- Factura → DetalleFactura -->
+  <line x1="175" y1="485" x2="210" y2="485" class="conn" marker-end="url(#arr)"/>
+
+  <!-- Producto → DetalleFactura -->
+  <line x1="280" y1="397" x2="280" y2="430" class="conn"/>
+  <line x1="280" y1="430" x2="292" y2="430" class="conn"/>
+  <line x1="292" y1="430" x2="292" y2="445" class="conn" marker-end="url(#arr)"/>
+
+  <!-- ===== DOMINIO SEGURIDAD ===== -->
+  <text class="sec-lbl" x="340" y="600" text-anchor="middle">── Dominio de seguridad y acceso ──</text>
+
+  <!-- PERSONA -->
+  <rect x="20" y="610" width="155" height="14" rx="0" fill="#993C1D"/>
+  <text class="t-hdr" x="97" y="621" text-anchor="middle" fill="white">PERSONA</text>
+  <rect x="20" y="624" width="155" height="13" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-pk"  x="30" y="634">id_persona PK</text>
+  <rect x="20" y="637" width="155" height="13" fill="var(--color-background-primary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="647">nombre</text>
+  <rect x="20" y="650" width="155" height="13" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="660">apellido</text>
+  <rect x="20" y="663" width="155" height="13" fill="var(--color-background-primary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="673">documento</text>
+  <rect x="20" y="676" width="155" height="13" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="686">fecha_nacimiento</text>
+
+  <!-- USUARIO -->
+  <rect x="210" y="610" width="158" height="14" rx="0" fill="#993C1D"/>
+  <text class="t-hdr" x="289" y="621" text-anchor="middle" fill="white">USUARIO</text>
+  <rect x="210" y="624" width="158" height="13" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-pk"  x="220" y="634">id_usuario PK</text>
+  <rect x="210" y="637" width="158" height="13" fill="var(--color-background-primary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="220" y="647">username</text>
+  <rect x="210" y="650" width="158" height="13" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="220" y="660">password</text>
+  <rect x="210" y="663" width="158" height="13" fill="var(--color-background-primary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="220" y="673">email</text>
+  <rect x="210" y="676" width="158" height="13" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-fk"  x="220" y="686">id_persona FK</text>
+  <rect x="210" y="689" width="158" height="13" fill="var(--color-background-primary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="220" y="699">fecha_registro</text>
+
+  <!-- Persona → Usuario -->
+  <line x1="175" y1="651" x2="210" y2="651" class="conn" marker-end="url(#arr)"/>
+
+  <!-- ROLES -->
+  <rect x="20" y="760" width="148" height="14" rx="0" fill="#993C1D"/>
+  <text class="t-hdr" x="94" y="771" text-anchor="middle" fill="white">ROLES</text>
+  <rect x="20" y="774" width="148" height="13" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-pk"  x="30" y="784">id_rol PK</text>
+  <rect x="20" y="787" width="148" height="13" fill="var(--color-background-primary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="797">nombre</text>
+  <rect x="20" y="800" width="148" height="13" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="810">descripcion</text>
+  <rect x="20" y="813" width="148" height="13" fill="var(--color-background-primary)" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="t-row" x="30" y="823">permisos</text>
+
+  <!-- USUARIO_ROL (tabla intermedia N:M) -->
+  <rect x="210" y="760" width="165" height="14" rx="0" fill="#BA7517"/>
+  <text class="t-hdr" x="292" y="771" text-anchor="middle" fill="white">USUARIO_ROL</text>
+  <rect x="210" y="774" width="165" height="13" fill="var(--color-background-secondary)" stroke="#BA7517" stroke-width="0.5"/>
+  <text class="t-fk"  x="220" y="784">id_usuario FK (PK)</text>
+  <rect x="210" y="787" width="165" height="13" fill="var(--color-background-primary)" stroke="#BA7517" stroke-width="0.5"/>
+  <text class="t-fk"  x="220" y="797">id_rol FK (PK)</text>
+  <rect x="210" y="800" width="165" height="13" fill="var(--color-background-secondary)" stroke="#BA7517" stroke-width="0.5"/>
+  <text class="t-row" x="220" y="810">fecha_asignacion</text>
+
+  <!-- Usuario → UsuarioRol -->
+  <line x1="289" y1="703" x2="289" y2="740" class="conn"/>
+  <line x1="289" y1="740" x2="292" y2="740" class="conn"/>
+  <line x1="292" y1="740" x2="292" y2="760" class="conn" marker-end="url(#arr)"/>
+
+  <!-- Roles → UsuarioRol -->
+  <line x1="94" y1="827" x2="94" y2="845" class="conn"/>
+  <line x1="94" y1="845" x2="260" y2="845" class="conn"/>
+  <line x1="260" y1="845" x2="260" y2="813" class="conn" marker-end="url(#arr)"/>
+
+  <!-- Conexión inter-dominio: Usuario → Factura -->
+  <line x1="97" y1="510" x2="97" y2="555" class="conn"/>
+  <line x1="97" y1="555" x2="580" y2="555" class="conn"/>
+  <line x1="580" y1="555" x2="580" y2="590" class="conn"/>
+  <line x1="580" y1="590" x2="580" y2="610" class="conn"/>
+  <text class="sec-lbl" x="340" y="551">id_usuario (Usuario → Factura)</text>
+
+  <!-- ===== LEYENDA ===== -->
+  <rect x="20" y="880" width="640" height="95" rx="8" fill="var(--color-background-secondary)" stroke="var(--color-border-tertiary)" stroke-width="0.5"/>
+  <text font-family="var(--font-sans)" font-size="12" font-weight="500" fill="var(--color-text-primary)" x="36" y="900">Leyenda</text>
+  <rect x="36" y="910" width="10" height="10" rx="2" fill="#534AB7"/>
+  <text class="sec-lbl" x="52" y="920" fill="var(--color-text-primary)">Dominio ubicación</text>
+  <rect x="180" y="910" width="10" height="10" rx="2" fill="#0F6E56"/>
+  <text class="sec-lbl" x="196" y="920" fill="var(--color-text-primary)">Dominio comercial</text>
+  <rect x="324" y="910" width="10" height="10" rx="2" fill="#993C1D"/>
+  <text class="sec-lbl" x="340" y="920" fill="var(--color-text-primary)">Dominio seguridad</text>
+  <rect x="468" y="910" width="10" height="10" rx="2" fill="#BA7517"/>
+  <text class="sec-lbl" x="484" y="920" fill="var(--color-text-primary)">Tabla intermedia N:M</text>
+  <text class="sec-lbl" x="36" y="942" fill="var(--color-text-primary)">PK subrayado = llave primaria   |   FK cursiva = llave foránea   |   - - - = relación entre tablas</text>
+  <text class="sec-lbl" x="36" y="960" fill="var(--color-text-primary)">USUARIO_ROL resuelve la relación N:M entre USUARIO y ROLES con clave primaria compuesta</text>
+</svg>

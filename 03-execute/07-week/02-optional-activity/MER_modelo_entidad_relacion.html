@@ -1,0 +1,291 @@
+
+<style>
+  body { margin: 0; }
+  .lbl { font-family: var(--font-sans); font-size: 11px; fill: var(--color-text-secondary); }
+  .card { font-family: var(--font-sans); font-size: 12px; font-weight: 600; fill: var(--color-text-primary); }
+  .ent-title { font-family: var(--font-sans); font-size: 13px; font-weight: 500; }
+  .attr { font-family: var(--font-sans); font-size: 10.5px; fill: var(--color-text-secondary); }
+  .pk { font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; text-decoration: underline; fill: var(--color-text-primary); }
+  .rel-lbl { font-family: var(--font-sans); font-size: 11px; fill: var(--color-text-secondary); font-style: italic; }
+  .rel-box { fill: var(--color-background-secondary); stroke: var(--color-border-primary); stroke-width: 0.5; }
+</style>
+<svg width="100%" viewBox="0 0 680 1420" role="img">
+  <title>MER - Modelo Entidad-Relación</title>
+  <desc>Diagrama entidad-relación con dominios de ubicación, comercial y seguridad</desc>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ===== TÍTULO ===== -->
+  <text class="ent-title" x="340" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="var(--color-text-primary)">MER — Modelo Entidad-Relación</text>
+
+  <!-- ========== DOMINIO UBICACIÓN ========== -->
+  <text class="lbl" x="340" y="56" text-anchor="middle" font-size="12" fill="var(--color-text-secondary)">── Dominio de ubicación ──</text>
+
+  <!-- CONTINENTE -->
+  <g>
+    <rect x="30" y="65" width="145" height="100" rx="6" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="1.2"/>
+    <rect x="30" y="65" width="145" height="24" rx="6" fill="#534AB7"/>
+    <rect x="30" y="77" width="145" height="12" rx="0" fill="#534AB7"/>
+    <text class="ent-title" x="102" y="81" text-anchor="middle" fill="white">Continente</text>
+    <text class="pk"  x="42" y="104">id_continente</text>
+    <text class="attr" x="42" y="119">nombre</text>
+    <text class="attr" x="42" y="133">codigo</text>
+    <text class="attr" x="42" y="148">descripcion</text>
+  </g>
+
+  <!-- Relación continente - pais: 1..N -->
+  <line x1="175" y1="115" x2="220" y2="115" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="180" y="110">1</text>
+  <text class="card" x="208" y="110">N</text>
+  <rect class="rel-box" x="220" y="104" width="60" height="22" rx="4"/>
+  <text class="rel-lbl" x="250" y="119" text-anchor="middle">tiene</text>
+
+  <!-- PAIS -->
+  <g>
+    <rect x="280" y="65" width="140" height="115" rx="6" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="1.2"/>
+    <rect x="280" y="65" width="140" height="24" rx="6" fill="#534AB7"/>
+    <rect x="280" y="77" width="140" height="12" rx="0" fill="#534AB7"/>
+    <text class="ent-title" x="350" y="81" text-anchor="middle" fill="white">País</text>
+    <text class="pk"  x="292" y="104">id_pais</text>
+    <text class="attr" x="292" y="119">nombre</text>
+    <text class="attr" x="292" y="134">codigo_iso</text>
+    <text class="attr" x="292" y="149">id_continente (FK)</text>
+    <text class="attr" x="292" y="163">poblacion</text>
+  </g>
+
+  <!-- línea continente - pais -->
+  <line x1="280" y1="115" x2="280" y2="115" stroke="var(--color-border-primary)" stroke-width="1"/>
+
+  <!-- Relación pais - departamento -->
+  <line x1="420" y1="115" x2="465" y2="115" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="425" y="110">1</text>
+  <text class="card" x="453" y="110">N</text>
+  <rect class="rel-box" x="465" y="104" width="62" height="22" rx="4"/>
+  <text class="rel-lbl" x="496" y="119" text-anchor="middle">contiene</text>
+
+  <!-- DEPARTAMENTO -->
+  <g>
+    <rect x="527" y="65" width="148" height="115" rx="6" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="1.2"/>
+    <rect x="527" y="65" width="148" height="24" rx="6" fill="#534AB7"/>
+    <rect x="527" y="77" width="148" height="12" rx="0" fill="#534AB7"/>
+    <text class="ent-title" x="601" y="81" text-anchor="middle" fill="white">Departamento</text>
+    <text class="pk"  x="539" y="104">id_departamento</text>
+    <text class="attr" x="539" y="119">nombre</text>
+    <text class="attr" x="539" y="134">codigo</text>
+    <text class="attr" x="539" y="149">id_pais (FK)</text>
+    <text class="attr" x="539" y="163">capital</text>
+  </g>
+
+  <!-- Relación departamento - ciudad (baja) -->
+  <line x1="601" y1="180" x2="601" y2="215" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="607" y="200">1</text>
+  <rect class="rel-box" x="565" y="215" width="72" height="22" rx="4"/>
+  <text class="rel-lbl" x="601" y="230" text-anchor="middle">agrupa</text>
+  <text class="card" x="607" y="254">N</text>
+  <line x1="601" y1="237" x2="601" y2="260" stroke="var(--color-border-primary)" stroke-width="1"/>
+
+  <!-- CIUDAD -->
+  <g>
+    <rect x="527" y="260" width="148" height="115" rx="6" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="1.2"/>
+    <rect x="527" y="260" width="148" height="24" rx="6" fill="#534AB7"/>
+    <rect x="527" y="272" width="148" height="12" rx="0" fill="#534AB7"/>
+    <text class="ent-title" x="601" y="276" text-anchor="middle" fill="white">Ciudad</text>
+    <text class="pk"  x="539" y="299">id_ciudad</text>
+    <text class="attr" x="539" y="314">nombre</text>
+    <text class="attr" x="539" y="329">id_departamento (FK)</text>
+    <text class="attr" x="539" y="344">codigo_postal</text>
+    <text class="attr" x="539" y="359">tipo</text>
+  </g>
+
+  <!-- Ciudad - Barrio -->
+  <line x1="601" y1="375" x2="601" y2="410" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="607" y="395">1</text>
+  <rect class="rel-box" x="565" y="410" width="72" height="22" rx="4"/>
+  <text class="rel-lbl" x="601" y="425" text-anchor="middle">tiene</text>
+  <text class="card" x="607" y="449">N</text>
+  <line x1="601" y1="432" x2="601" y2="455" stroke="var(--color-border-primary)" stroke-width="1"/>
+
+  <!-- BARRIO -->
+  <g>
+    <rect x="527" y="455" width="148" height="100" rx="6" fill="var(--color-background-secondary)" stroke="#534AB7" stroke-width="1.2"/>
+    <rect x="527" y="455" width="148" height="24" rx="6" fill="#534AB7"/>
+    <rect x="527" y="467" width="148" height="12" rx="0" fill="#534AB7"/>
+    <text class="ent-title" x="601" y="471" text-anchor="middle" fill="white">Barrio</text>
+    <text class="pk"  x="539" y="494">id_barrio</text>
+    <text class="attr" x="539" y="509">nombre</text>
+    <text class="attr" x="539" y="524">id_ciudad (FK)</text>
+    <text class="attr" x="539" y="539">estrato</text>
+  </g>
+
+  <!-- ========== DOMINIO COMERCIAL ========== -->
+  <text class="lbl" x="340" y="596" text-anchor="middle" font-size="12" fill="var(--color-text-secondary)">── Dominio comercial ──</text>
+
+  <!-- CATEGORIA -->
+  <g>
+    <rect x="30" y="610" width="148" height="100" rx="6" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="1.2"/>
+    <rect x="30" y="610" width="148" height="24" rx="6" fill="#0F6E56"/>
+    <rect x="30" y="622" width="148" height="12" rx="0" fill="#0F6E56"/>
+    <text class="ent-title" x="104" y="626" text-anchor="middle" fill="white">Categoría</text>
+    <text class="pk"  x="42" y="649">id_categoria</text>
+    <text class="attr" x="42" y="664">nombre</text>
+    <text class="attr" x="42" y="679">descripcion</text>
+    <text class="attr" x="42" y="694">estado</text>
+  </g>
+
+  <!-- Categoria - Producto -->
+  <line x1="178" y1="658" x2="218" y2="658" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="182" y="653">1</text>
+  <text class="card" x="207" y="653">N</text>
+  <rect class="rel-box" x="218" y="647" width="72" height="22" rx="4"/>
+  <text class="rel-lbl" x="254" y="662" text-anchor="middle">clasifica</text>
+
+  <!-- PRODUCTO -->
+  <g>
+    <rect x="290" y="610" width="160" height="130" rx="6" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="1.2"/>
+    <rect x="290" y="610" width="160" height="24" rx="6" fill="#0F6E56"/>
+    <rect x="290" y="622" width="160" height="12" rx="0" fill="#0F6E56"/>
+    <text class="ent-title" x="370" y="626" text-anchor="middle" fill="white">Producto</text>
+    <text class="pk"  x="302" y="649">id_producto</text>
+    <text class="attr" x="302" y="664">nombre</text>
+    <text class="attr" x="302" y="679">precio</text>
+    <text class="attr" x="302" y="694">stock</text>
+    <text class="attr" x="302" y="709">id_categoria (FK)</text>
+    <text class="attr" x="302" y="724">descripcion</text>
+  </g>
+
+  <!-- FACTURA -->
+  <g>
+    <rect x="30" y="800" width="148" height="115" rx="6" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="1.2"/>
+    <rect x="30" y="800" width="148" height="24" rx="6" fill="#0F6E56"/>
+    <rect x="30" y="812" width="148" height="12" rx="0" fill="#0F6E56"/>
+    <text class="ent-title" x="104" y="816" text-anchor="middle" fill="white">Factura</text>
+    <text class="pk"  x="42" y="839">id_factura</text>
+    <text class="attr" x="42" y="854">fecha</text>
+    <text class="attr" x="42" y="869">total</text>
+    <text class="attr" x="42" y="884">id_usuario (FK)</text>
+    <text class="attr" x="42" y="899">estado</text>
+  </g>
+
+  <!-- Factura - DetalleFactura -->
+  <line x1="178" y1="858" x2="218" y2="858" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="182" y="853">1</text>
+  <text class="card" x="207" y="853">N</text>
+  <rect class="rel-box" x="218" y="847" width="72" height="22" rx="4"/>
+  <text class="rel-lbl" x="254" y="862" text-anchor="middle">contiene</text>
+
+  <!-- DETALLE_FACTURA -->
+  <g>
+    <rect x="290" y="800" width="165" height="130" rx="6" fill="var(--color-background-secondary)" stroke="#0F6E56" stroke-width="1.2"/>
+    <rect x="290" y="800" width="165" height="24" rx="6" fill="#0F6E56"/>
+    <rect x="290" y="812" width="165" height="12" rx="0" fill="#0F6E56"/>
+    <text class="ent-title" x="372" y="816" text-anchor="middle" fill="white">Detalle_Factura</text>
+    <text class="pk"  x="302" y="839">id_detalle (PK)</text>
+    <text class="attr" x="302" y="854">id_factura (FK)</text>
+    <text class="attr" x="302" y="869">id_producto (FK)</text>
+    <text class="attr" x="302" y="884">cantidad</text>
+    <text class="attr" x="302" y="899">precio_unitario</text>
+    <text class="attr" x="302" y="914">subtotal</text>
+  </g>
+
+  <!-- Relación Producto - DetalleFactura -->
+  <line x1="370" y1="740" x2="370" y2="800" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="376" y="760">1</text>
+  <text class="card" x="376" y="792">N</text>
+
+  <!-- ========== DOMINIO SEGURIDAD ========== -->
+  <text class="lbl" x="340" y="1000" text-anchor="middle" font-size="12" fill="var(--color-text-secondary)">── Dominio de seguridad y acceso ──</text>
+
+  <!-- PERSONA -->
+  <g>
+    <rect x="30" y="1015" width="155" height="115" rx="6" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="1.2"/>
+    <rect x="30" y="1015" width="155" height="24" rx="6" fill="#993C1D"/>
+    <rect x="30" y="1027" width="155" height="12" rx="0" fill="#993C1D"/>
+    <text class="ent-title" x="107" y="1031" text-anchor="middle" fill="white">Persona</text>
+    <text class="pk"  x="42" y="1054">id_persona</text>
+    <text class="attr" x="42" y="1069">nombre</text>
+    <text class="attr" x="42" y="1084">apellido</text>
+    <text class="attr" x="42" y="1099">documento</text>
+    <text class="attr" x="42" y="1114">fecha_nacimiento</text>
+  </g>
+
+  <!-- Persona - Usuario -->
+  <line x1="185" y1="1072" x2="225" y2="1072" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="189" y="1067">1</text>
+  <text class="card" x="214" y="1067">1</text>
+  <rect class="rel-box" x="225" y="1061" width="60" height="22" rx="4"/>
+  <text class="rel-lbl" x="255" y="1076" text-anchor="middle">tiene</text>
+
+  <!-- USUARIO -->
+  <g>
+    <rect x="285" y="1015" width="158" height="130" rx="6" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="1.2"/>
+    <rect x="285" y="1015" width="158" height="24" rx="6" fill="#993C1D"/>
+    <rect x="285" y="1027" width="158" height="12" rx="0" fill="#993C1D"/>
+    <text class="ent-title" x="364" y="1031" text-anchor="middle" fill="white">Usuario</text>
+    <text class="pk"  x="297" y="1054">id_usuario</text>
+    <text class="attr" x="297" y="1069">username</text>
+    <text class="attr" x="297" y="1084">password</text>
+    <text class="attr" x="297" y="1099">email</text>
+    <text class="attr" x="297" y="1114">id_persona (FK)</text>
+    <text class="attr" x="297" y="1129">fecha_registro</text>
+  </g>
+
+  <!-- Usuario - Roles N:M -->
+  <line x1="443" y1="1072" x2="483" y2="1072" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="447" y="1067">N</text>
+  <text class="card" x="472" y="1067">M</text>
+  <rect class="rel-box" x="483" y="1061" width="72" height="22" rx="4"/>
+  <text class="rel-lbl" x="519" y="1076" text-anchor="middle">asignado</text>
+
+  <!-- ROLES -->
+  <g>
+    <rect x="555" y="1015" width="120" height="100" rx="6" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="1.2"/>
+    <rect x="555" y="1015" width="120" height="24" rx="6" fill="#993C1D"/>
+    <rect x="555" y="1027" width="120" height="12" rx="0" fill="#993C1D"/>
+    <text class="ent-title" x="615" y="1031" text-anchor="middle" fill="white">Roles</text>
+    <text class="pk"  x="567" y="1054">id_rol</text>
+    <text class="attr" x="567" y="1069">nombre</text>
+    <text class="attr" x="567" y="1084">descripcion</text>
+    <text class="attr" x="567" y="1099">permisos</text>
+  </g>
+
+  <!-- Tabla intermedia Usuario_Rol -->
+  <line x1="615" y1="1115" x2="615" y2="1160" stroke="var(--color-border-primary)" stroke-width="1" stroke-dasharray="4 3"/>
+  <g>
+    <rect x="540" y="1160" width="148" height="85" rx="6" fill="var(--color-background-secondary)" stroke="#993C1D" stroke-width="1" stroke-dasharray="5 3"/>
+    <rect x="540" y="1160" width="148" height="24" rx="6" fill="#BA7517"/>
+    <rect x="540" y="1172" width="148" height="12" rx="0" fill="#BA7517"/>
+    <text class="ent-title" x="614" y="1176" text-anchor="middle" fill="white">Usuario_Rol</text>
+    <text class="pk"  x="552" y="1199">id_usuario (FK)</text>
+    <text class="attr" x="552" y="1214">id_rol (FK)</text>
+    <text class="attr" x="552" y="1229">fecha_asignacion</text>
+  </g>
+
+  <!-- Usuario - Usuario_Rol -->
+  <line x1="364" y1="1145" x2="364" y2="1180" stroke="var(--color-border-primary)" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="364" y1="1180" x2="540" y2="1195" stroke="var(--color-border-primary)" stroke-width="1" stroke-dasharray="4 3"/>
+
+  <!-- Conexión Usuario - Factura -->
+  <line x1="364" y1="1015" x2="364" y2="970" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <line x1="364" y1="970" x2="104" y2="970" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <line x1="104" y1="970" x2="104" y2="915" stroke="var(--color-border-primary)" stroke-width="1"/>
+  <text class="card" x="370" y="990">1</text>
+  <text class="card" x="108" y="950">N</text>
+  <text class="rel-lbl" x="230" y="966">genera</text>
+
+  <!-- Leyenda -->
+  <rect x="30" y="1290" width="620" height="110" rx="8" fill="var(--color-background-secondary)" stroke="var(--color-border-tertiary)" stroke-width="0.5"/>
+  <text class="ent-title" x="46" y="1312" font-size="12" fill="var(--color-text-primary)">Leyenda</text>
+  <rect x="46" y="1322" width="12" height="12" rx="2" fill="#534AB7"/>
+  <text class="attr" x="64" y="1333" fill="var(--color-text-primary)">Dominio ubicación</text>
+  <rect x="190" y="1322" width="12" height="12" rx="2" fill="#0F6E56"/>
+  <text class="attr" x="208" y="1333" fill="var(--color-text-primary)">Dominio comercial</text>
+  <rect x="334" y="1322" width="12" height="12" rx="2" fill="#993C1D"/>
+  <text class="attr" x="352" y="1333" fill="var(--color-text-primary)">Dominio seguridad</text>
+  <rect x="478" y="1322" width="12" height="12" rx="2" fill="#BA7517"/>
+  <text class="attr" x="496" y="1333" fill="var(--color-text-primary)">Tabla intermedia</text>
+  <text class="attr" x="46" y="1358" fill="var(--color-text-primary)">PK subrayado = llave primaria   |   FK = llave foránea   |   1, N, M = cardinalidades</text>
+  <text class="attr" x="46" y="1378" fill="var(--color-text-primary)">Relaciones: — línea sólida normal   |   - - línea punteada = tabla intermedia</text>
+</svg>
