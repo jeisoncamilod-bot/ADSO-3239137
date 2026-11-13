@@ -1,0 +1,34 @@
+﻿# Variables privadas
+.env
+.env.*
+!.env.example
+
+# Dependencias y compilaciones
+node_modules/
+vendor/
+dist/
+build/
+
+# Archivos temporales
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Respaldos
+api-backup/
+App.backup*
+index.backup*
+index.antes-de-restaurar.css
+
+# Archivos de entrega comprimidos
+*.zip
+
+# Archivos locales de base de datos
+*.sqlite
+*.sqlite3
+
+# Cache
+.vite/
+.phpunit.cache/
+.phpunit.result.cache
