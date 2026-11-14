@@ -1,0 +1,75 @@
+﻿name: plans-archive
+
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-plans_archive}
+      POSTGRES_USER: ${POSTGRES_USER:-plans_archive}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in infra/.env}
+    ports:
+      - "${DB_PORT:-5434}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+    networks: [plans_network]
+
+  api:
+    build:
+      context: ./docker/backend
+    working_dir: /var/www/html
+    volumes:
+      - ../api/api:/var/www/html
+      - laravel_vendor:/var/www/html/vendor
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_DATABASE: ${POSTGRES_DB:-plans_archive}
+      DB_USERNAME: ${POSTGRES_USER:-plans_archive}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in infra/.env}
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["sh", "-c", "if [ ! -f vendor/autoload.php ]; then composer install --no-interaction --prefer-dist; fi; php artisan serve --host=0.0.0.0 --port=8000"]
+    networks: [plans_network]
+
+  app:
+    build:
+      context: ./docker/frontend
+    working_dir: /usr/src/app
+    volumes:
+      - ../app:/usr/src/app
+      - frontend_node_modules:/usr/src/app/node_modules
+    environment:
+      API_PROXY_TARGET: http://api:8000
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "${APP_PORT:-5173}:5173"
+    depends_on: [api]
+    command: ["sh", "-c", "if [ ! -d node_modules/vite ]; then npm install; fi; npm run dev -- --host 0.0.0.0"]
+    networks: [plans_network]
+
+volumes:
+  postgres_data:
+    external: true
+    name: plans_archive_pgdata
+  laravel_vendor:
+  frontend_node_modules:
+
+networks:
+  plans_network:
+    driver: bridge
+
+
+
