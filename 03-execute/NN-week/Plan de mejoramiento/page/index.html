@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Plans Archive: gestión de planos físicos, inventario, préstamos y devoluciones para oficinas de ingeniería.">
+    <title>Plans Archive | Gestión documental de planos</title>
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#main">Ir al contenido</a>
+    <header class="header">
+        <div class="container nav"><a class="brand" href="#home"><img src="assets/mark.svg" alt="" width="40"
+                    height="40">Plans Archive</a><button class="menu" type="button" aria-expanded="false"
+                aria-controls="navigation" hidden>Menú</button>
+            <nav id="navigation" aria-label="Navegación principal"><a href="#features">Funcionalidades</a><a
+                    href="#workflow">Cómo funciona</a><a href="#rules">Control de préstamos</a><a class="button small"
+                    href="#access">Acceso</a></nav>
+        </div>
+    </header>
+    <main id="main">
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div>
+                    <p class="eyebrow">GESTIÓN DE PLANOS · INGENIERÍA</p>
+                    <h1>Cada plano, bajo control.</h1>
+                    <p class="lead">Organiza el archivo físico de tu oficina de ingeniería. Consulta existencias,
+                        registra préstamos y devoluciones y conserva la trazabilidad de cada operación.</p>
+                    <div class="actions"><a class="button" href="#features">Explorar funcionalidades</a><a
+                            class="secondary" href="#workflow">Conocer el proceso →</a></div>
+                </div>
+                <figure class="preview">
+                    <div class="preview-top"><span>PLANS ARCHIVE / CATÁLOGO</span><span>Vista ilustrativa</span></div>
+                    <img src="assets/blueprint.svg"
+                        alt="Ilustración de un plano arquitectónico con habitaciones, cotas y líneas de referencia"
+                        width="640" height="320">
+                    <div class="preview-bottom">
+                        <div><small>Código de ejemplo</small><strong>ARQ-001</strong></div>
+                        <div><small>Categoría</small><strong>Arquitectónicos</strong></div>
+                        <div><small>Disponibles</small><strong>2 de 4</strong></div>
+                    </div>
+                    <figcaption>Ejemplo visual; no contiene datos en tiempo real.</figcaption>
+                </figure>
+            </div>
+        </section>
+        <section class="metrics" aria-label="Políticas del producto">
+            <div class="container metric-grid">
+                <div><strong>5</strong><span>Categorías de planos</span></div>
+                <div><strong>3</strong><span>Préstamos abiertos por ingeniero, máximo</span></div>
+                <div><strong>6 días</strong><span>Plazo de devolución</span></div>
+            </div>
+        </section>
+        <section class="section container" id="features">
+            <p class="eyebrow">FUNCIONALIDADES</p>
+            <h2>Un archivo organizado de principio a fin</h2>
+            <div class="features">
+                <article><span class="number">01 / CATÁLOGO</span>
+                    <h3>Inventario de planos</h3>
+                    <p>Busca por código, título o categoría. Consulta unidades totales, disponibles y estado del plano.
+                    </p>
+                </article>
+                <article><span class="number">02 / RESPONSABLES</span>
+                    <h3>Gestión de ingenieros</h3>
+                    <p>Identifica a los responsables de los préstamos y administra sus datos y estado.</p>
+                </article>
+                <article><span class="number">03 / OPERACIONES</span>
+                    <h3>Préstamos y devoluciones</h3>
+                    <p>Registra entregas y devoluciones con actualización de existencias.</p>
+                </article>
+                <article><span class="number">04 / SEGUIMIENTO</span>
+                    <h3>Control de vencimientos</h3>
+                    <p>Consulta préstamos abiertos, cerrados y vencidos para dar seguimiento a cada operación.</p>
+                </article>
+                <article><span class="number">05 / TRAZABILIDAD</span>
+                    <h3>Historial de movimientos</h3>
+                    <p>Conserva los datos originales del plano en cada préstamo, incluso cuando cambia el catálogo.</p>
+                </article>
+                <article><span class="number">06 / REPORTES</span>
+                    <h3>Planos más solicitados</h3>
+                    <p>Consulta la demanda histórica de planos a partir de los préstamos registrados.</p>
+                </article>
+            </div>
+        </section>
+        <section class="section tinted" id="workflow">
+            <div class="container">
+                <p class="eyebrow">FLUJO DE TRABAJO</p>
+                <h2>De la consulta a la devolución</h2>
+                <ol class="steps">
+                    <li>
+                        <h3>Localiza el plano</h3>
+                        <p>Consulta el catálogo y verifica las unidades disponibles.</p>
+                    </li>
+                    <li>
+                        <h3>Identifica al ingeniero</h3>
+                        <p>Comprueba su estado y las condiciones de préstamo.</p>
+                    </li>
+                    <li>
+                        <h3>Registra la entrega</h3>
+                        <p>Asocia una unidad al responsable y registra el vencimiento.</p>
+                    </li>
+                    <li>
+                        <h3>Registra la devolución</h3>
+                        <p>Restituye la unidad y conserva el historial.</p>
+                    </li>
+                </ol>
+                <h3>Categorías del archivo</h3>
+                <div class="tags">
+                    <span>Arquitectónicos</span><span>Estructurales</span><span>Eléctricos</span><span>Hidráulicos</span><span>Viales</span>
+                </div>
+            </div>
+        </section>
+        <section class="section container rules" id="rules">
+            <div>
+                <p class="eyebrow">INTEGRIDAD OPERATIVA</p>
+                <h2>Reglas claras para proteger el inventario</h2>
+                <p>Diseñado para mantener la disponibilidad y el historial consistentes, incluso cuando varios
+                    operadores trabajan al mismo tiempo.</p>
+            </div>
+            <div class="rule-list">
+                <details open>
+                    <summary>¿Cuántos planos puede recibir un ingeniero?</summary>
+                    <p>Hasta tres préstamos abiertos, con un plazo de seis días por operación.</p>
+                </details>
+                <details>
+                    <summary>¿Qué sucede si tiene préstamos vencidos?</summary>
+                    <p>No puede recibir nuevos préstamos hasta devolver los vencidos.</p>
+                </details>
+                <details>
+                    <summary>¿Qué ocurre con la última unidad disponible?</summary>
+                    <p>Si dos operadores intentan prestarla simultáneamente, solo uno puede completar la operación; el
+                        otro recibe un conflicto.</p>
+                </details>
+                <details>
+                    <summary>¿Se elimina el historial?</summary>
+                    <p>No. Los préstamos y devoluciones se conservan. Los planos se desactivan de forma lógica y los
+                        datos históricos permanecen.</p>
+                </details>
+            </div>
+        </section>
+        <section class="access" id="access">
+            <div class="container">
+                <p class="eyebrow">ACCESO A LA APLICACIÓN</p>
+                <h2>Gestiona tu archivo de planos</h2>
+                <p>Accede al sistema desde el entorno local cuando la aplicación esté en ejecución.</p><a
+                    class="button light" id="app-link" href="http://localhost:5173/">Abrir aplicación local</a>
+                <p class="note">Requiere que el servicio React de Plans Archive esté iniciado.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container footer"><a class="brand" href="#home"><img src="assets/mark.svg" alt="" width="32"
+                    height="32">Plans Archive</a><span>Gestión de préstamos de planos de ingeniería.</span><a
+                href="#home">Volver arriba ↑</a></div>
+    </footer>
+</body>
+
+</html>
