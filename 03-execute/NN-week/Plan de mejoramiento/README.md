@@ -1,42 +1,146 @@
-﻿# Plans Archive
+﻿
+Este proyecto es la solución del plan de mejoramiento del aprendiz A15, ficha 3239137, dominio plans-archive
 
-Sistema web para la gestion de planos de ingenieria.
+# Plans Archive
 
-## Tecnologias
+## Project Overview
 
-- React y Vite: interfaz web.
-- Laravel: API REST.
-- PostgreSQL: base de datos.
-- Docker: ejecucion de servicios.
+Plans Archive is a web-based engineering drawing management system designed to manage drawing inventory, engineers, loans, returns, and operational reports.
 
-## Funcionalidades
+## Technology Stack
 
-- Autenticacion y autorizacion por roles.
-- Consulta y administracion de planos.
-- Gestion de ingenieros.
-- Registro de prestamos y devoluciones.
-- Control de inventario y vencimientos.
-- Reporte de planos mas solicitados.
+- Frontend: React and Vite.
+- Backend: PHP 8.4 and Laravel 12.
+- Database: PostgreSQL 17.
+- Infrastructure: Docker and Docker Compose.
+- Authentication: Laravel Sanctum.
+- Data seeding: Node.js.
 
-## Estructura
+## Core Features
 
-- app/: frontend React.
-- api/: backend Laravel.
-- docs/: documentacion tecnica.
+- Authentication and role-based authorization.
+- Engineering drawing catalog management.
+- Engineer management.
+- Loan and return management.
+- Inventory availability control.
+- Overdue loan validation.
+- Historical loan snapshots.
+- Concurrent loan protection.
+- Most requested drawings report.
 
-## Verificacion
+## Business Rules
 
-Backend:
-docker exec api-api-1 php artisan test
+- Each engineer can have a maximum of three open loans.
+- The loan period is six days.
+- Engineers with overdue loans cannot request new loans.
+- Available units must remain between zero and total units.
+- Historical loan information must remain unchanged.
+- Catalog records use logical deactivation.
+- Loan and return records must not be deleted.
+- Dates are handled in UTC.
+- User-facing messages are written in Spanish.
 
-Frontend:
-docker exec plans-archive-react npm run build
+## Project Structure
 
-Resultado verificado el 13 de noviembre de 2026:
-29 pruebas aprobadas, 65 aserciones.
-Compilacion de React exitosa.
+| Directory | Responsibility |
+|-----------|----------------|
+| docs/ | Technical specifications and architecture decisions |
+| api/ | Laravel REST API and backend tests |
+| app/ | React web application |
+| infra/ | Docker infrastructure and service configuration |
+| page/ | Public product website |
+| tool/ | API-based data seeding tool |
 
-## Documentacion
+## Prerequisites
 
-Consultar ARCHITECTURE.md, DESIGN.md,
-REQUIREMENTS.md, TESTING.md y la carpeta docs/.
+- Docker Desktop.
+- Docker Compose.
+- Node.js and npm for local tool execution.
+- Git.
+
+Configure the required environment variables and persistent database volume according to the infrastructure documentation before starting a new installation.
+
+## Running the Project
+
+From the project root:
+
+```bash
+cd infra
+docker compose up -d
+```
+
+Check the service status:
+
+```bash
+docker compose ps
+```
+
+## Local Services
+
+| Service | Address |
+|---------|---------|
+| React application | http://localhost:5173 |
+| Laravel API | http://localhost:8000/api/v1 |
+| PostgreSQL | localhost:5434 |
+| Public website | page/index.html |
+
+## Security
+
+- Services are restricted to the local host.
+- Laravel debug mode is disabled.
+- Protected endpoints require authentication.
+- Administrative operations require authorized roles.
+- Environment secrets are excluded from version control.
+- The main database is separated from the testing database.
+
+## Testing and Validation
+
+Previously recorded automated test results:
+
+- Backend: 29 passed tests and 65 assertions.
+- Data seeding tool: 36 passed tests.
+- React application: successful production build.
+
+Parallel loan scenario verified on November 26, 2026:
+
+- Initial available units: 1.
+- Successful loans: 1.
+- Rejected loans: 1.
+- Final available units: 0.
+- Final loan count: 1.
+
+The rejected request produced the expected inventory business rule exception.
+
+Backend tests must run against the isolated PostgreSQL testing database, never against the main application database.
+
+## Demonstration Dataset
+
+The main application database was verified with:
+
+- 5 categories.
+- 10 engineers.
+- 25 engineering drawings.
+- 15 loans.
+- 5 returns.
+- 75 total units.
+- 65 available units.
+
+The data seeding tool communicates with the REST API instead of inserting records directly into the database.
+
+## Technical Documentation
+
+- ARCHITECTURE.md
+- DESIGN.md
+- REQUIREMENTS.md
+- TESTING.md
+- docs/
+
+Each component contains its corresponding implementation and technical documentation.
+
+## Academic Context
+
+- Institution: SENA.
+- Training program: Software Analysis and Development.
+- Training group: 3239137.
+- Learner code: A15.
+- Assigned domain: plans-archive.
