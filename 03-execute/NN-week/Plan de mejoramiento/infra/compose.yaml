@@ -1,4 +1,5 @@
-﻿name: plans-archive
+﻿
+name: plans-archive
 
 services:
   db:
@@ -9,7 +10,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-plans_archive}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in infra/.env}
     ports:
-      - "${DB_PORT:-5434}:5432"
+      - "127.0.0.1:${DB_PORT:-5434}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -28,7 +29,7 @@ services:
       - laravel_vendor:/var/www/html/vendor
     environment:
       APP_ENV: local
-      APP_DEBUG: "true"
+      APP_DEBUG: "false"
       APP_URL: http://localhost:8000
       DB_CONNECTION: pgsql
       DB_HOST: db
@@ -37,7 +38,7 @@ services:
       DB_USERNAME: ${POSTGRES_USER:-plans_archive}
       DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in infra/.env}
     ports:
-      - "${API_PORT:-8000}:8000"
+      - "127.0.0.1:${API_PORT:-8000}:8000"
     depends_on:
       db:
         condition: service_healthy
@@ -55,7 +56,7 @@ services:
       API_PROXY_TARGET: http://api:8000
       CHOKIDAR_USEPOLLING: "true"
     ports:
-      - "${APP_PORT:-5173}:5173"
+      - "127.0.0.1:${APP_PORT:-5173}:5173"
     depends_on: [api]
     command: ["sh", "-c", "if [ ! -d node_modules/vite ]; then npm install; fi; npm run dev -- --host 0.0.0.0"]
     networks: [plans_network]
@@ -70,6 +71,3 @@ volumes:
 networks:
   plans_network:
     driver: bridge
-
-
-
