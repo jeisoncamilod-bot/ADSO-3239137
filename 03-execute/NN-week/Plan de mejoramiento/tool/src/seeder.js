@@ -1,3 +1,4 @@
+
 /**
  * Plans Archive - Data Seeder Tool
  * Seed workflow and data integrity protection.
@@ -111,8 +112,9 @@ export async function seed(api, { apply = false } = {}) {
 
     const activePlans = await api.list('/plans');
 
+    // Use a Laravel-compatible boolean query parameter.
     const otherPlans = await api.list(
-        '/plans?include_inactive=true'
+        '/plans?include_inactive=1'
     );
 
     // Remove repeated records from combined listings.
